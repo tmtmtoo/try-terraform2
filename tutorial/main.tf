@@ -11,12 +11,12 @@ provider "docker" {}
 
 variable "container_name" {
   description = "foobar"
-  type = string
-  default = "ExampleContainer" 
+  type        = string
+  default     = "ExampleContainer"
 }
 
 resource "docker_image" "nginx" {
-  name        = "nginx:latest"
+  name         = "nginx:latest"
   keep_locally = false
 }
 
@@ -31,10 +31,10 @@ resource "docker_container" "nginx" {
 
 output "container_id" {
   description = "Container ID"
-  value = docker_container.nginx.id
+  value       = docker_container.nginx.id
 }
 
 output "image_id" {
   description = "Image ID"
-  value = docker_image.nginx.id
+  value       = docker_image.nginx.id
 }
