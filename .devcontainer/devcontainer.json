@@ -1,0 +1,27 @@
+{
+  "name": "Dev Container with Aqua",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/aquaproj/devcontainer-features/aqua-installer:0.1.6": {
+      "aqua_version": "v2.55.0"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/meaningful-ooo/devcontainer-features/fish:2": {}
+  },
+  "postCreateCommand": "aqua i -l",
+  "remoteEnv": {
+    "PATH": "/home/vscode/.local/share/aquaproj-aqua/bin:${containerEnv:PATH}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "aquaproj.aqua",
+        "hashicorp.terraform",
+        "golang.go"
+      ]
+    }
+  }
+}

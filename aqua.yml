@@ -1,0 +1,5 @@
+registries:
+- type: standard
+  ref: v4.155.1
+packages:
+- name: hashicorp/terraform@v1.13.3
