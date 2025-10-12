@@ -3,10 +3,9 @@ variable "container_name" {
   type = string
 }
 
-variable "nginx_image_tag" {
-  description = "nginx image tag"
+variable "container_image_id" {
+  default = "container image id"
   type = string
-  default = "latest"
 }
 
 variable "container_extern_port" {

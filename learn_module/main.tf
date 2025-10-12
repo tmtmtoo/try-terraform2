@@ -9,29 +9,34 @@ terraform {
 
 provider "docker" {}
 
-/*
+resource "docker_image" "nginx" {
+  name         = "nginx:${var.nginx_image_tag}"
+  keep_locally = false
+}
+
 locals {
   nginx_instances = {
-    nginx1 = { port = 9000, image_tag = "latest" }
-    nginx2 = { port = 9001, image_tag = "latest" }
+    nginx1 = { port = 9000 }
+    nginx2 = { port = 9001 }
   }
 }
 
 module "nginx" {
-  source = "./modules/nginx"
+  source   = "./modules/nginx"
   for_each = local.nginx_instances
 
-  container_name = each.key
+  container_name        = each.key
+  container_image_id    = docker_image.nginx.image_id
   container_extern_port = each.value.port
-  nginx_image_tag = each.value.image_tag
 }
-*/
 
+/*
 module "nginx" {
   source = "./modules/nginx"
   count = 2
 
   container_name = "nginx${count.index + 1}"
+  container_image_id = docker_image.nginx.image_id
   container_extern_port = 9000 + count.index
-  nginx_image_tag = "latest"
 }
+*/

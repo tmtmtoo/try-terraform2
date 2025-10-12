@@ -7,13 +7,8 @@ terraform {
   }
 }
 
-resource "docker_image" "nginx" {
-  name = format("nginx:%s", var.nginx_image_tag)
-  keep_locally = false
-}
-
 resource "docker_container" "nginx" {
-  image = docker_image.nginx.image_id
+  image = var.container_image_id
   name = var.container_name
   ports {
     internal = 80
